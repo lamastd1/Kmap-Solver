@@ -1,4 +1,4 @@
-# Kmap-Solver
+# Kmap-Solver (written in Java)
 The Kmap Solver is a tool that solves boolean algebra equations. The following is a list of things to keep in mind while using the application
 
 1) Select the minterms you like to add to the kmap by pressing the respective button listed in the truth table next to the literals. Each minterm has 3 states: 
