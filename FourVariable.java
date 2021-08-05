@@ -10,7 +10,8 @@ import javax.swing.border.*;
 /*******************************************************
 Dominick Lamastra
 4 variable Kmap Solver using Quine McCluskey algorithm
-completed January 2020
+completed January 2021
+finalized August 2021
 *******************************************************/
 
 
@@ -76,11 +77,11 @@ public class FourVariable extends JFrame implements ActionListener {
     int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
     setBounds(x - 350, 0, 700, 800);
     pane.setLayout(new GroupLayout(pane));
-    this.pane.setBounds(0, 0, 1000, 1000);
+    this.pane.setBounds(0, 0, 1000, 800);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     
     // add a scroll pane
-    this.pane.setPreferredSize(new Dimension(1000, 1000));
+    this.pane.setPreferredSize(new Dimension(1000, 800));
     final JScrollPane scrollp = new JScrollPane(this.pane, 
         JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
         JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -399,12 +400,14 @@ public class FourVariable extends JFrame implements ActionListener {
     if (e.getSource() == help) {
       Help h = new Help();
       h.setVisible(true);
+      this.setVisible(false);
     }
     
     // the about frame opens
     if (e.getSource() == about) {
       About a = new About();
       a.setVisible(true);
+      this.setVisible(false);
     }
     
     // all the users loops created will be cleared
@@ -842,6 +845,7 @@ public class FourVariable extends JFrame implements ActionListener {
     
     // uses the final arrays to find the point implicants
     findPI(total, literals, totalMinterms);
+    
     } 
   }
   
@@ -1249,7 +1253,36 @@ public class FourVariable extends JFrame implements ActionListener {
           setup(spreadOL, realOL, i, optionsL, primeImplicants, keepP); 
         }
       }
-   }  
+    }
+    minimalSoP = showMinimalSoP.getText();
+    String lines[] = minimalSoP.split("\r?\n");
+    int holdLetters = 31;
+    int changeCount = 0;
+    for (int i = 0; i < lines.length; i++) {
+      int oldLetters = 0;
+      for (int j = 0; j < lines[i].length(); j++) {
+        if (!(lines[i].equals("OR")) && (Character.isLetter(lines[i].charAt(j)))) {
+          oldLetters++;
+        }
+      }
+      if (oldLetters < holdLetters && oldLetters != 0) {
+        holdLetters = oldLetters;
+        changeCount++;
+      }
+      if (changeCount == 2) {
+        for (int j = 0; j < i; j++) {
+          lines[j] = "";
+        }
+        changeCount--;
+      }
+    }
+    minimalSoP = "";
+    for (int i = 0; i < lines.length; i++) {
+      if (lines[i] != "") {
+        minimalSoP = minimalSoP + lines[i] + "\n"; 
+      }
+    }
+    showMinimalSoP.setText(minimalSoP);
     minimalSoP = "";
     return;
   } 
@@ -1361,7 +1394,7 @@ public class FourVariable extends JFrame implements ActionListener {
         holdHighPlus = oldPlus;
       }
     }
-    if (holdHighPlus < currPlus && showMinimalSoP.getText().isEmpty() == false) {
+    if ((holdHighPlus < currPlus) && showMinimalSoP.getText().isEmpty() == false) {
       return;
     }
     

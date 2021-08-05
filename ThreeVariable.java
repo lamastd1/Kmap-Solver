@@ -10,7 +10,8 @@ import java.util.Collections;
 /*******************************************************
 Dominick Lamastra
 3 variable Kmap Solver using Quine McCluskey algorithm
-completed January 2020
+completed January 2021
+finalized August 2021
 *******************************************************/
 
 
@@ -73,7 +74,7 @@ public class ThreeVariable extends JFrame implements ActionListener {
     // set up the JFrame and pane
     setTitle("Kmap Solver with Three Variables");
     pane.setLayout(null);
-    this.pane.setBounds(0, 0, 1000, 1000);
+    this.pane.setBounds(0, 0, 1000, 800);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     // add a scroll pane
@@ -373,12 +374,14 @@ public class ThreeVariable extends JFrame implements ActionListener {
     if (e.getSource() == help) {
       Help h = new Help();
       h.setVisible(true);
+      this.setVisible(false);
     }
     
     // the about frame opens
     if (e.getSource() == about) {
       About a = new About();
       a.setVisible(true);
+      this.setVisible(false);
     }
     
   	// all the users loops created will be cleared

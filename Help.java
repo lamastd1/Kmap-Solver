@@ -1,23 +1,27 @@
 package kmapSolver;
 
 import javax.swing.*;
+import java.awt.event.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
-public class Help extends JFrame {
+public class Help extends JFrame implements ActionListener {
   
   private JPanel pane = new JPanel();
+  private JButton about; // sends user to about page
+  private JButton threeVariable; // sends user to 3 variable kmap
+  private JButton fourVariable; // sends user to 4 variable kmap
   
   public Help (){
    
     Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
-    setBounds(x - 400, 50, 700, 800);
+    setBounds(x - 350, 50, 700, 800);
     pane.setLayout(null);
-    this.pane.setBounds(0, 0, 2000, 2000);
-    setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    this.pane.setBounds(0, 0, 800, 1000);
+    setDefaultCloseOperation(EXIT_ON_CLOSE);
   
-    this.pane.setPreferredSize(new Dimension(2000, 2000));
+    this.pane.setPreferredSize(new Dimension(800, 1000));
     final JScrollPane scrollp = new JScrollPane(this.pane, 
     JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
         JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -26,7 +30,7 @@ public class Help extends JFrame {
      
     // labels the help page
     JLabel help = new JLabel("HELP");
-    help.setBounds(315, 50, 100, 40);
+    help.setBounds(315, 0, 100, 50);
     help.setFont(help.getFont().deriveFont(28f));
     pane.add(help);
     help.setVisible(true);
@@ -50,7 +54,8 @@ public class Help extends JFrame {
        + "clicking the x of the upper right hand corner of all tabs. \n\n"
        + "10) Above the kmap text area shows if the current kmap drawn on the screen is correct or incorrect, meaning the minumum possible amount of boxes cover all of the minterms. "
        + "Correct is labeled in green while incorrect is labeled in red\n\n"
-       + "11) This screen can be accessed again by clicking the \"help\" button located on top of the kmap solver", 2, 1);
+       + "11) This screen can be accessed again by clicking the \"help\" button located on top of the kmap solver\n"
+       + "12) Click a button above to get started!", 2, 1);
     textArea.setBounds(10, 100, 660, 700);
     textArea.setFont(textArea.getFont().deriveFont(14f));
     textArea.setLineWrap(true);
@@ -58,5 +63,48 @@ public class Help extends JFrame {
     textArea.setEditable(false);
     pane.add(textArea);
     textArea.setVisible(true);
+    
+    // Creates buttons that will send the user to a different page of the program
+    threeVariable = new JButton("Three Variable Kmap");
+    threeVariable.setBounds(10, 60, 200, 30);
+    threeVariable.addActionListener(this);
+    pane.add(threeVariable); 
+    threeVariable.setVisible(true);
+    
+    fourVariable = new JButton("Four Variable Kmap");
+    fourVariable.setBounds(235, 60, 200, 30);
+    fourVariable.addActionListener(this);
+    pane.add(fourVariable); 
+    fourVariable.setVisible(true);
+    
+    about = new JButton("About");
+    about.setBounds(460, 60, 200, 30);
+    about.addActionListener(this);
+    pane.add(about); 
+    about.setVisible(true);
+  }
+  
+  public void actionPerformed(ActionEvent e) {
+    
+    // the user clicked the three variable button 
+    if (e.getSource() == threeVariable) {  
+      ThreeVariable t = new ThreeVariable();
+      t.setVisible(true);
+      this.setVisible(false);
+    }
+    
+    // the user clicked the four variable button
+    if (e.getSource() == fourVariable) {
+      FourVariable f = new FourVariable();
+      f.setVisible(true);
+      this.setVisible(false);
+    }
+    
+    // user clicked the about button
+    if (e.getSource() == about) {
+      About a = new About();
+      a.setVisible(true);
+      this.setVisible(false);
+    }
   }
 }

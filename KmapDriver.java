@@ -8,10 +8,7 @@ public class KmapDriver {
 	      
 	      public void run() {
 	        
-	        
-	      	FourVariable f = new FourVariable();
 	        Help h = new Help();
-					f.setVisible(true);
           h.setVisible(true);
 	      }
 	      

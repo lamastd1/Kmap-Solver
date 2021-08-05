@@ -3,23 +3,28 @@ package kmapSolver;
 import javax.swing.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class About extends JFrame {
+public class About extends JFrame implements ActionListener {
   
   private JPanel pane = new JPanel();
+  private JButton help; // sends user to help page
+  private JButton threeVariable; // sends user to 3 variable kmap
+  private JButton fourVariable; // sends user to 4 variable kmap
   
   public About () {
     
     Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
-    setBounds(x - 300, 50, 700, 800);
+    setBounds(x - 350, 50, 700, 800);
     pane.setLayout(null);
-    this.pane.setBounds(0, 0, 2000, 2000);
-    setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    this.pane.setBounds(0, 0, 800, 1000);
+    setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     // labels the about page
     JLabel about = new JLabel("ABOUT");
-    about.setBounds(300, 50, 100, 40);
+    about.setBounds(300, 0, 100, 50);
     about.setFont(about.getFont().deriveFont(28f));
     pane.add(about);
     about.setVisible(true);
@@ -29,6 +34,7 @@ public class About extends JFrame {
        + "\n"
        + "Version History:\n"
        + "Beta Version 9:  February 5, 2021\n"
+       + "Full Version 1.0: August 5, 2021\n"
        + "\n"
        + "This project can be used as free open source software."
        + "\n\n"
@@ -53,6 +59,50 @@ public class About extends JFrame {
         JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     this.add(scrollp);
     setVisible(true);
-   
+    
+    // Creates buttons that will send the user to a different page of the program
+    threeVariable = new JButton("Three Variable Kmap");
+    threeVariable.setBounds(10, 60, 200, 30);
+    threeVariable.addActionListener(this);
+    pane.add(threeVariable); 
+    threeVariable.setVisible(true);
+    
+    fourVariable = new JButton("Four Variable Kmap");
+    fourVariable.setBounds(235, 60, 200, 30);
+    fourVariable.addActionListener(this);
+    pane.add(fourVariable); 
+    fourVariable.setVisible(true);
+    
+    help = new JButton("Help");
+    help.setBounds(460, 60, 200, 30);
+    help.addActionListener(this);
+    pane.add(help); 
+    help.setVisible(true);
+    
+  }
+  
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    
+    // the user clicked the three variable button 
+    if (e.getSource() == threeVariable) {  
+      ThreeVariable t = new ThreeVariable();
+      t.setVisible(true);
+      this.setVisible(false);
+    }
+    
+    // the user clicked the four variable button
+    if (e.getSource() == fourVariable) {
+      FourVariable f = new FourVariable();
+      f.setVisible(true);
+      this.setVisible(false);
+    }
+    
+    // user clicked the about button
+    if (e.getSource() == help) {
+      Help h = new Help();
+      h.setVisible(true);
+      this.setVisible(false);
+    }
   }
 }
