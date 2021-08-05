@@ -21,6 +21,7 @@ public class About extends JFrame implements ActionListener {
     pane.setLayout(null);
     this.pane.setBounds(0, 0, 800, 1000);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
+    setResizable(false);
 
     // labels the about page
     JLabel about = new JLabel("ABOUT");

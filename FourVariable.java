@@ -86,6 +86,7 @@ public class FourVariable extends JFrame implements ActionListener {
         JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
         JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     this.add(scrollp);
+    setResizable(false);
     
     binaryValues = new JLabel[16]; // the bits 0000-1111
     bits = new JButton[16]; // a 0, 1 , or an X

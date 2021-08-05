@@ -12,7 +12,7 @@ public class Help extends JFrame implements ActionListener {
   private JButton threeVariable; // sends user to 3 variable kmap
   private JButton fourVariable; // sends user to 4 variable kmap
   
-  public Help (){
+  public Help () {
    
     Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
@@ -24,9 +24,10 @@ public class Help extends JFrame implements ActionListener {
     this.pane.setPreferredSize(new Dimension(800, 1000));
     final JScrollPane scrollp = new JScrollPane(this.pane, 
     JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
-        JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     this.add(scrollp);
     setVisible(true);
+    setResizable(false);
      
     // labels the help page
     JLabel help = new JLabel("HELP");
@@ -54,7 +55,7 @@ public class Help extends JFrame implements ActionListener {
        + "clicking the x of the upper right hand corner of all tabs. \n\n"
        + "10) Above the kmap text area shows if the current kmap drawn on the screen is correct or incorrect, meaning the minumum possible amount of boxes cover all of the minterms. "
        + "Correct is labeled in green while incorrect is labeled in red\n\n"
-       + "11) This screen can be accessed again by clicking the \"help\" button located on top of the kmap solver\n"
+       + "11) This screen can be accessed again by clicking the \"help\" button located on top of the kmap solver\n\n"
        + "12) Click a button above to get started!", 2, 1);
     textArea.setBounds(10, 100, 660, 700);
     textArea.setFont(textArea.getFont().deriveFont(14f));
