@@ -75,18 +75,18 @@ public class FourVariable extends JFrame implements ActionListener {
     setTitle("Kmap Solver with Four Variables"); 
     Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
-    setBounds(x - 350, 0, 700, 800);
+    setBounds(x - 350, 0, 700, (int)(dimension.getHeight() * 0.9));
     pane.setLayout(new GroupLayout(pane));
-    this.pane.setBounds(0, 0, 1000, 800);
+    this.pane.setBounds(0, 0, 1000, 1000);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
+    setResizable(false);
     
     // add a scroll pane
-    this.pane.setPreferredSize(new Dimension(1000, 800));
+    this.pane.setPreferredSize(new Dimension(1000, 1000));
     final JScrollPane scrollp = new JScrollPane(this.pane, 
         JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
         JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     this.add(scrollp);
-    setResizable(false);
     
     binaryValues = new JLabel[16]; // the bits 0000-1111
     bits = new JButton[16]; // a 0, 1 , or an X
@@ -361,7 +361,7 @@ public class FourVariable extends JFrame implements ActionListener {
     minimalSoPLabel.setVisible(false);
     
     minScrollPane = new JScrollPane();
-    minScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    minScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
     minScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     showMinimalSoP = new JTextArea("0", 30, 30);
     showMinimalSoP.setBounds(20, 730, 600, 30);

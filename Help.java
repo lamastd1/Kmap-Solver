@@ -16,7 +16,7 @@ public class Help extends JFrame implements ActionListener {
    
     Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
-    setBounds(x - 350, 50, 700, 800);
+    setBounds(x - 350, 0, 700, (int)(dimension.getHeight() * 0.9));
     pane.setLayout(null);
     this.pane.setBounds(0, 0, 800, 1000);
     setDefaultCloseOperation(EXIT_ON_CLOSE);

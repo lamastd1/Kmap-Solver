@@ -69,7 +69,7 @@ public class ThreeVariable extends JFrame implements ActionListener {
     
     Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
-    setBounds(x - 350, 0, 700, 800);
+    setBounds(x - 350, 0, 700, (int)(dimension.getHeight() * 0.9));
     
     // set up the JFrame and pane
     setTitle("Kmap Solver with Three Variables");
