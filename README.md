@@ -5,6 +5,7 @@ This Kmap Solver was created by Dominick Lamastra [TCNJ 2023]. The Quine McClusk
 
 Version History:
 Beta Version 9:  February 5, 2021
+Complete Version 1.0: August 5, 2021
 
 This project can be used as free open source software.
 
