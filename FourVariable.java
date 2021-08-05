@@ -84,7 +84,7 @@ public class FourVariable extends JFrame implements ActionListener {
     this.pane.setPreferredSize(new Dimension(1000, 800));
     final JScrollPane scrollp = new JScrollPane(this.pane, 
         JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
-        JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     this.add(scrollp);
     setResizable(false);
     
